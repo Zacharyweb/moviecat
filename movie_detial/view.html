@@ -1,0 +1,20 @@
+<h1 class="page-header">{{movie.title}}<span class="badge" id="average">{{movie.rating.average}}</span></h1>
+<div class="jumbotron" id="movie_detial" ng-show="!loading">
+	<div class="media">
+	  <div class="media-left" href="#" >
+	    <img ng-src="{{movie.images.large}}" alt="{{title}}" id="detial_img">
+	  </div>
+	  <div class="media-body">
+	    <p><strong>导演：</strong><span ng-repeat="director in movie.directors">{{director.name}}{{$last?'':'、'}}</span></p>
+	    <p><strong>演员：</strong><span ng-repeat="cast in movie.casts">{{cast.name}}{{$last?'':'、'}}</p>
+	    <p><strong>地区：</strong><span>{{movie.countries.join('、')}}</span></p>
+	    <p><strong>影片简介：</strong>{{movie.summary}}</p>
+	  </div>
+	</div>
+</div>
+<div class="loading" ng-show="loading">
+   	<div class="spinner">
+		<div class="double-bounce1"></div>
+		<div class="double-bounce2"></div>
+	</div>
+</div>

@@ -1,0 +1,39 @@
+<h1 class="page-header">{{title}}</h1>
+<div class="list-group">
+  <a href="#/detial/{{movie.id}}" class="list-group-item" ng-repeat="movie in movies">
+	<div class="media">
+		<div class="media-left">
+		    <img ng-src="{{movie.images.small}}" alt="{{movie.title}}">
+		</div>
+		  <div class="media-body">
+		    <span class="badge pull-right">{{movie.rating.average}}</span>  
+		    <h3 class="media-heading"><strong>{{movie.title}}</strong></h3>
+		    <p>类型：<span>{{movie.genres.join('、')}}</span></p>
+		    <p>上映年份：<span>{{movie.year}}</span></p>
+		    <p>导演：
+			    <span ng-repeat="director in movie.directors">{{director.name}}{{$last?'':'、'}}</span>
+		    </p>
+		    <p>演员：<span ng-repeat="cast in movie.casts">{{cast.name}}{{$last?'':'、'}}</span></p> 
+		  </div>
+	</div>
+  </a>
+  <p class="total-msg" ng-show="!loading">共有 
+	  <span class="label label-default">{{totalCount}}</span>
+	  条记录，当前第
+	  <span class="label label-default">{{page}}/{{totalPage}}</span>
+	  页
+  </p>
+  <nav ng-show="!loading"> 
+	  <ul class="pagination">
+	    <li ng-class="{disabled: page <= 1}" ><a ng-click="go(page-1)" class="disabled">&laquo;</a></li>
+	    <li ng-repeat="p in pages"><a ng-click="go(p)" ng-class="{currentPage: p === page}">{{p}}</a></li>
+	    <li ng-class="{disabled: page >= totalPage}"><a ng-click="go(page+1)" >&raquo;</a></li>
+	  </ul>
+   </nav>
+   <div class="loading" ng-show="loading">
+   	    <div class="spinner">
+			<div class="double-bounce1"></div>
+			<div class="double-bounce2"></div>
+		</div>
+   </div>
+</div>
